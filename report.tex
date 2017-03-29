@@ -1,0 +1,237 @@
+\documentclass[a4paper, titlepage, 12pt, draft]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage{longtable}
+
+\linespread{1.4} % this amounts to 1.5 linespacing, for odd reasons.
+
+%redefine percentage sign to be a little smaller
+\let\oldpct\%
+\renewcommand{\%}{\scalebox{.9}{\oldpct}}
+
+\begin{document}
+
+\title{Uncalibrated eye-typing facilitated by probabilistic language and input modelling
+\\---\\
+A report for the Thesis Preparation course, fall semester 2016}
+\author{
+	Sigurt Bladt Dinesen
+	\\\texttt{sidi@itu.dk}
+}
+
+\maketitle
+
+\section*{Caveat}
+I have applied for an exemption to postpone my thesis to the fall semester of
+2017. As of February 2017, my application was granted by the Student Affairs \&
+Programmes I can't quite avoid that this report be affected by this delay. For
+example, I have not registered for the project yet. If credits are to be
+registered for supervising me up to this time, it should go to Dan Witzner
+Hansen, who is also supervising me in another project, that this project will build on.
+
+\section*{Introduction}
+The purpose of this project is to build an eye typing system, with uncalibrated eye tracking.
+
+Typing is a ubiquitous input method for human-computer interaction, particularly for
+human-to-human communication facilitated by computers.
+
+Several methods have been developed to help humans type faster and more
+accurately, especially on mobile platforms like mobile phones. Some methods are
+based on probabilistic language- and input-modelling, such as T9 and the
+replace-as-you-type technologies (colloquially; \textit{autocorrect}) that have mostly
+replaced T9 on contemporary smartphones, perhaps due to widespread deployment of
+touchscreens. Other methods use gestures, or leverage creative arrangements of
+input symbols. Examples include swype for Android and IOS, and Dasher and
+StarGazer intended for use with eye tracking.
+
+The use of eye tracking as a means of text input (eye typing) can be demanding
+on the user. Exact and deliberate control of the gaze is difficult and tiring,
+and in addition to the energy expended when typing, most systems require
+users to go through calibration routines before use.
+
+One area where eye typing has seen use is as a communication platform for ALS
+(amyotrophic lateral sclerosis) patients. Patients suffering suffering from ALS
+often retain the use of their eye muscles longer than that of other muscles, and
+eye typing can therefore help increase their quality of life. In practice,
+patients patients tend to use eye typing for short commands and answers. For
+such usage patterns, uncalibrated eye typing may be particularly beneficial.
+
+This project builds on a ongoing project that I am doing at the ITU, and so the
+details of this project cannot be fully determined yet. To make things simpler,
+this report will regard the ongoing project as "previous work" that has not yet
+been studied, and can hence affect the outcome of, and methods used in, this
+project, but not the goal and overall focus.
+
+The following outlines the methods I plan to investigate, to achieve the project
+goal:
+
+\begin{enumerate}
+\item A language- and input-model will be designed and implemented, in order to
+make educated guesses as to the intended user input, in an attempt to compensate
+for tracker (and user) imprecisions. The concrete design of he model
+research-to-be-done, but is envisioned as a combination of the following:
+\begin{itemize}
+    \item Interpreting the geometrical user input (points on a plane) as words with a
+    probabilistic word search.
+    \item Limiting the need for typing, by using predictive word-completion, in a
+      manner similar to that used in T9.
+\end{itemize}
+\item A typing system will be implemented, implementing uncalibrated tracking on
+top of existing tracker hardware.
+3. The typing system(s) will be
+evaluated with a typing performance test in a small-scale user-study.
+\end{enumerate}
+
+The deliverables of is project are software implementations of the language- and
+input-model, of the eye typing system(s), and a report detailing the project
+process and results.
+
+On the surface, this project is similar to my aforementioned previous project. But while the
+previous project is a small (7.5 ects points), shallow exploration of numerous
+solution spaces, this projects aims to go in depth in producing a single
+solution to the problem of uncalibrated eye-typing. It is hence a separate
+project, in the same setting.
+
+\section*{Work so far}
+My work so far has consisted mostly in talking to supervisors, and studying
+literature. I have delayed my thesis because I was unsure what I wanted to do
+for my thesis. I still don't, really. This makes it hard to write this report,
+but I have chosen to focus on one of the projects I have in mind. This means
+however, that a good deal of time has been spend merely considering different
+projects, and talking to potential supervisors with, no product to show for it.
+I realise that this makes for a weak report, but hope that my expended effort
+is apparent enough to make the report acceptable. I have considered a total of 3
+different paths:
+
+\begin{enumerate}
+	\item Uncalibrated eye typing (the one described in this report).
+	\item Projects relating to locality, or even distance, sensitive
+	hashing, with application to similarity search. (discussed with Francesco
+	Silvestri, and breifly with Rasmus Pagh)
+	\item Projects relating to GPU-computations of insurance-solvency, and
+	a domain specific language for modelling insurance contracts. (Discussed with Peter Sestoft)
+\end{enumerate}
+
+These are all continuations of, or related to projects I have previously done
+on my masters at ITU.
+
+For the uncalibrated eye typing project, my reading includes: Some chapters from
+yarbus\cite{yarbus}, as early seminal work on gaze tracking and attention
+modelling. Augustin et al.\cite{witzner}, using a low-cost calibrated
+gaze-tracker for eye typing. Esteves et al. \cite{orbits}, evaluating a
+calibration-free eye typing system, using moving "orbits" and Pearson
+correlation to compensate for the lack of calibration. Pfeuffer et
+al.\cite{pursuit}, introducing the use of moving targets along with Pearson
+correlation, but using it to make the calibration processes less tedious, not to
+climate it as in \cite{orbits}. Finally, a few chapters (mostly chapter 6) of
+Marajanta's dissertation from 2009\cite{majaranta} covers the subject of eye
+typing in general. Chapter 6 and 7 specifically deal with the use of language
+and input modelling.
+
+\section*{Project plan}
+\subsection*{Report Outline}
+Following is a rough outline of the project report.
+\begin{enumerate}
+	\item Introduction
+	\begin{enumerate}
+		\item Problem Statement
+		\item Background and Previous Work
+	\end{enumerate}
+	\item Method
+	\begin{enumerate}
+		\item Language Modelling
+		\item Input Modelling
+	\end{enumerate}
+	\item User Study
+	\begin{enumerate}
+		\item Study Description
+		\item Study Results
+	\end{enumerate}
+	\item Project Conclusion
+	\begin{enumerate}
+		\item Project Summary
+		\item Implications / Possible Future Work
+	\end{enumerate}
+\end{enumerate}
+
+\subsection*{Detailed plan}
+Following is a (mostly) week-by-week plan to complete the project.
+\begin{longtable}[hbt]{|p{7cm}|p{5cm}|}
+	\hline
+	 What (agreements, deadlines, working tasks) &
+	 When (allocated time slots, deadlines) \\
+	 \hline
+	 \hline
+	 Finish literature studies & Week 29-33. \\
+	 \hline
+	 Finalize project agreement & Week 34. \\
+	 \hline
+	 Semester officially starts & 28. Aug. \\
+	 \hline
+	 Submit final project agreement to board of studies & 29. Aug. \\
+	 \hline
+	 Supervisor meetings held every other week & Starting with week 36\\
+	 \hline
+	  Write introduction sections for the report.
+	  Collate datasets for language models & week 37\\
+	 \hline
+	  Implement and finalize languages model & week 38\\
+	 \hline
+	  Setup physical/hardware aspects of eye tracking system, implement
+	 software abstraction around it. Write about the background of language and
+	 input modelling techniques in the method section for the report & week 39\\
+	 \hline
+	  Implement uncalibrated eye tracking, based on Pearson-correlation & week 40\\
+	 \hline
+	  Implement input model. Organize user-study (find subjects) & week 41\\
+	 \hline
+	  Buffer week for making sure implementations are robust enough for
+	  user studies, fixing implementation errors, and detail. Also
+	  implement log/data-gathering to facilitate user study & week 42\\
+	 \hline
+	  Setup and perform user study, collate data and make conclusions & week 43\\
+	 \hline
+	  Finish user study sections in report & week 44\\
+	 \hline
+	  Write detailed description of the implemented language and input
+	  models for the method section in the report & week 45\\
+	 \hline
+	  Write project conclusion section of report & week 46\\
+	 \hline
+	  Polish and proof read full report& week 47\\
+	 \hline
+	  Buffer week for unforeseen problems, because I've always wished I'd had one in other projects & week 48\\
+	 \hline
+	 Project deadline & 2. Jan. \\
+	\hline
+\end{longtable}
+
+\begin{thebibliography}{9}
+\bibitem{yarbus}
+Alfred L. Yarbus.Eye Movements and Vision.PLENUM PRESS - NEW YORK, 1967.
+
+\bibitem{witzner}
+Javier san Agustin, Emilie Mollenbach, Maria Barret, Martin Tall, Dan Witzner
+Hansen, and Paulin John Hansen. Evaluation of a low-cost open-source gaze
+tracker. 2010.
+
+
+\bibitem{orbits}
+Augusto Esteves, Eduardo Velloso, Andreas Bulling, and Hans Gellersen. 2015.
+		Orbits: Gaze Interaction for Smart Watches using Smooth Pursuit
+		Eye Movements. In Proceedings of the 28th Annual ACM Symposium
+		on User Interface Software \& Technology (UIST '15). ACM, New
+		York, NY, USA, 457-466. DOI:
+		https://doi.org/10.1145/2807442.2807499
+
+\bibitem{pursuit}
+Ken Pfeuffer, Melodie Vidal, Jayson Turner, Andreas Bulling, and Hans
+Gellersen. 2013. Pursuit calibration: making gaze calibration less tedious and
+more flexible. In Proceedings of the 26th annual ACM symposium on User
+interface software and technology (UIST '13). ACM, New York, NY, USA, 261-270.
+DOI: http://dx.doi.org/10.1145/2501988.2501998
+\bibitem{majaranta}
+Päivi Majaranta. Text entry by eye gaze. 2009. (dissertation)
+
+\end{thebibliography}
+\end{document}
